@@ -1,6 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
+#dammy projects
+projects=[
+    {
+        'author':'Alex',
+        'project_name':'Github',
+        'project_description':'This is a site where you can search for github..'
+    },
+    {
+        'author':'Alex',
+        'project_name':'Github',
+        'project_description':'This is a site where you can search for github..'
+    },
+]
+
 def home(request):
-    return HttpResponse('<h1>here we come</>')
+    context = {
+        'projects':projects
+    }
+    return render(request, 'awards/home.html', context)
