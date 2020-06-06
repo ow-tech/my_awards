@@ -1,8 +1,6 @@
 from django.urls import path
 from  . import views as awards_views
 from django.contrib.auth import views as auth_views
-from django.conf.urls.static import static
-from django.conf import settings
 
 urlpatterns = [
     path('', awards_views.home, name= 'home'),
@@ -13,5 +11,3 @@ urlpatterns = [
     path(r'new/project', awards_views.new_project, name='new-project'),
     path(r'single/(<int:pk>)/', awards_views.single_project, name = 'single_project'),
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
