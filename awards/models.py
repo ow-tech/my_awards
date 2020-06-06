@@ -11,7 +11,7 @@ class Project(models.Model):
 
 
     def __str__(self):
-        return self.author, self.project_name
+        return '{},{}'.format(self.author, self.project_name)
 
  
     def save_project(self):
@@ -21,3 +21,5 @@ class Project(models.Model):
     def delete_project(cls, id):
         project = cls.objects.filter(id).all()
         project.delete()
+
+  
