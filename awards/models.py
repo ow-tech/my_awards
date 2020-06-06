@@ -6,7 +6,7 @@ class Project(models.Model):
     project_name = models.CharField(max_length=30)
     project_description = models.TextField()
     project_image = models.ImageField(upload_to='images/', default='some string')
-    project_live_link =models.URLField(max_length=100000, default='some string')
+    project_live_link =models.URLField(max_length=100000, default='enter live link')
 
 
 
@@ -21,5 +21,16 @@ class Project(models.Model):
     def delete_project(cls, id):
         project = cls.objects.filter(id).all()
         project.delete()
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField()
+    image = models.ImageField(default='default.jpeg', upload_to='profile_pics')
+
+    def __str__(self):
+        return '{}'.format(self.user)
+
+    def save(self):
+        super().save()
 
   

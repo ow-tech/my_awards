@@ -1,0 +1,14 @@
+asgiref==3.2.7
+beautifulsoup4==4.9.1
+confusable-homoglyphs==3.2.0
+Django==3.0.7
+django-bootstrap4==2.0.1
+django-crispy-forms==1.9.1
+django-registration==2.4.1
+importlib-metadata==1.6.0
+Pillow==7.1.2
+psycopg2==2.8.5
+pytz==2020.1
+soupsieve==2.0.1
+sqlparse==0.3.1
+zipp==3.1.0
