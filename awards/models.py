@@ -17,10 +17,15 @@ class Project(models.Model):
     def save_project(self):
         self.save()
 
+    # @classmethod
+    # def delete_project(cls, id):
+    #     project = cls.objects.filter(id).all()
+    #     project.delete()
     @classmethod
-    def delete_project(cls, id):
-        project = cls.objects.filter(id).all()
-        project.delete()
+    def search_by_project_name(cls, search_term):
+        projects = cls.objects.filter(project_name__icontains=search_term)
+        return projects
+
 
     @classmethod
     def get_single_image_by_id(cls, id):
