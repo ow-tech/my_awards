@@ -12,7 +12,11 @@
     /* background-position:center center ; */
     
 }
-.top h1,p,a{
+.top h1,p{
     color: honeydew;
     padding-left: 40px;
+}
+#project{
+    margin-top: 50px;
+    margin-left: 80px;
 }

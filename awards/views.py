@@ -44,11 +44,11 @@ def profile(request):
 def new_project(request):
     current_user =request.user
     form = NewProjectForm(request.POST, request.FILES)
-    if forms.is_valid():
+    if form.is_valid():
         project = form.save(commit=False)
         project.author = current_user
-        project.project_save()
+        project.save_project()
         return redirect('home')
     else:
-        from = NewProjectForm(request.POST, request.FILES)
-    return render (request, 'new_project.html', {"form":form})
+        form = NewProjectForm(request.POST, request.FILES)
+    return render (request, 'awards/new_project.html', {"form":form})

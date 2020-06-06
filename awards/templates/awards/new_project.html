@@ -1,0 +1,10 @@
+{% extends 'awards/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form class='form' action="{% url 'new-project' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy }}
+        <input type="submit" class ="btn btn-success btn-lg" value="Post">
+    </form>
+{% endblock %}
