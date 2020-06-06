@@ -1,0 +1,18 @@
+
+.top{
+    margin-top:0 ;
+    padding-top: 20px;
+
+
+    background-image: url("https://bit.ly/2AEwbRD");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height:700px;
+    /* background-position:center center ; */
+    
+}
+.top h1,p,a{
+    color: honeydew;
+    padding-left: 40px;
+}

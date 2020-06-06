@@ -13,12 +13,25 @@
     <title>Document</title>
     {% block styles %}
         {% bootstrap_css %}
-        <link rel="styleshhet" href="/">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     {% endblock %}
 </head>
 <body>
+			<!-- navbar section -->
+		<!-- <div class='container-fluid' > -->
+			<div class="top">
+				<h1>AWARDS</h1>
+				<p>Be Kind Enough to Be Fair</p>
+				<div class="navbar-nav">
+         <span>
+					<a class="nav-item nav-link" href="#"><i class="fas fa-sign-in-alt"></i></a>
+          <a class="nav-item nav-link" href="#">Register</a>
+				 </span>
+        </div>
+
+    </div>
     <div class="container">
         {% block content %}
         {% endblock %}
