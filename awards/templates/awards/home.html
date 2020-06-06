@@ -4,10 +4,38 @@
     <a href="{%url 'new-project'%}"><i class="fas fa-plus-circle"></i>Post</a>
 </div>
     <h$>yes.</h>
-    {% for project in projects %}
+    
     <h5>{{project.author}}</h5>
     <h1>{{ project.project_name}}</h1>
+    <img src="{{project.project_image.url}}">
     
     <p>{{project.project_description}}</p>
-    {% endfor %}
+    <div class="container">
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4">
+                    <div class="card " style="width: 40rem;">
+                        <!-- <div class="update">
+                        
+                        </div> -->
+                        <div>
+                            <a href="{% url 'profile' %}"> <img class="rounded-circle "  src="{{ user.profile.image.url }}" 
+                                style="border-radius: 50%; width:25px; height:25px;" > {{ post.author}}</a>
+                            <hr>
+                            <img class="card-img-top" src= "{{ project.project_image.url }}" alt="image">
+                        </div> 
+                        <div class="card-body">
+                            <div class='engagement' >
+                            </div>
+                            <div>
+                                <a href="{% url 'profile' %}">Posted by: {{ project.author}}</a>
+                            </div>
+                            <hr>
+        
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
