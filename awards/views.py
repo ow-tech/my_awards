@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Project, Profile
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, ProfileUpdateForm
+from .forms import UserRegisterForm, ProfileUpdateForm, NewProjectForm
 
 #dammy projects
 
@@ -23,7 +23,7 @@ def register(request):
     else:
         form= UserRegisterForm()  
     return render(request, 'registration/registration.html', {'form':form})
-@login_required
+@login_required()
 def profile(request):
     # images = Image.objects.filter(author=request.user).all()
     profile = Profile.objects.get_or_create(user=request.user)
@@ -40,3 +40,15 @@ def profile(request):
         # 'projects':projects
     }
     return render(request, 'registration/profile.html', context)
+@login_required()
+def new_project(request):
+    current_user =request.user
+    form = NewProjectForm(request.POST, request.FILES)
+    if forms.is_valid():
+        project = form.save(commit=False)
+        project.author = current_user
+        project.project_save()
+        return redirect('home')
+    else:
+        from = NewProjectForm(request.POST, request.FILES)
+    return render (request, 'new_project.html', {"form":form})
