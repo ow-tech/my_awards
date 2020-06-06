@@ -20,15 +20,15 @@
                         </div> -->
                         <div>
                             <a href="{% url 'profile' %}"> <img class="rounded-circle "  src="{{ user.profile.image.url }}" 
-                                style="border-radius: 50%; width:25px; height:25px;" > {{ post.author}}</a>
+                                style="border-radius: 50%; width:25px; height:25px;" > {{ project.author }}</a>
                             <hr>
-                            <img class="card-img-top" src= "{{ project.project_image.url }}" alt="image">
+                            <a href="{% url 'single_project' project.id %}"><img class="card-img-top" src= "{{ project.project_image.url }}" alt="image"></a>
                         </div> 
                         <div class="card-body">
                             <div class='engagement' >
                             </div>
                             <div>
-                                <a href="{% url 'profile' %}">Posted by: {{ project.author}}</a>
+                                <a href="{% url 'single_project' project.id  %}"><i class="far fa-chart-bar"></i>Rate</a>
                             </div>
                             <hr>
         

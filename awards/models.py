@@ -22,6 +22,11 @@ class Project(models.Model):
         project = cls.objects.filter(id).all()
         project.delete()
 
+    @classmethod
+    def get_single_image_by_id(cls, id):
+        project = cls.objects.filter(pk=id)
+        return project
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()

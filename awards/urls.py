@@ -11,6 +11,7 @@ urlpatterns = [
     path(r'accounts/login', auth_views.LoginView.as_view(), name='login'),
     path(r'accounts/logout', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path(r'new/project', awards_views.new_project, name='new-project'),
+    path(r'single/(<int:pk>)/', awards_views.single_project, name = 'single_project'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Project, Profile
 from django.contrib.auth.decorators import login_required
@@ -52,3 +52,10 @@ def new_project(request):
     else:
         form = NewProjectForm(request.POST, request.FILES)
     return render (request, 'awards/new_project.html', {"form":form})
+
+def single_project(request, pk):
+    project = get_object_or_404(Project, id=pk)
+    context = {
+        "project":project
+    }
+    return render(request,'awards/single_project.html', context )
