@@ -2,19 +2,19 @@
 .top{
     margin-top:0 ;
     padding-top: 20px;
-
-
     background-image: url("https://bit.ly/2AEwbRD");
-    background-size: cover;
+    /* background-size: cover; */
     background-repeat: no-repeat;
     background-position: center center;
-    height:700px;
-    /* background-position:center center ; */
-    
+    height:600px;
 }
 .top h1,p{
     color: honeydew;
     padding-left: 40px;
+}
+.links{
+    color: honeydew;
+    margin-left: 40px;
 }
 #project{
     margin-top: 50px;
@@ -29,4 +29,8 @@
 .card-img-top{
     height: 250px;
     width: auto;
+}
+.form{
+    margin-top: 5px;
+    padding-top: 20px;
 }
