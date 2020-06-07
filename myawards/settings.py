@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'phonenumber-field',
+    # 'phonenumber_field',
     'crispy_forms',
     'awards',
     'bootstrap4',

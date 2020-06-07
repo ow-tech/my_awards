@@ -20,3 +20,8 @@ class NewProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         exclude = ['author']
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['design', 'usability', 'content']

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from phonenumber_field.modelfields import PhoneNumberField
+# from phonenumber_field.modelfields import PhoneNumberField
 
 class Project(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -37,13 +37,13 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
     image = models.ImageField(default='default.jpeg', upload_to='profile_pics')
-    phone_number = models.PhoneNumberField()
-    email = models.EmailField()
+    # phone_number = models.TextField(default='0723475857842974')
+    email = models.EmailField(default='Your email')
 
     def __str__(self):
         return '{}'.format(self.user)
 class Review(models.Model):
-    rattes = (
+    rates = (
         (1, '1'),
         (2, '2'),
         (3, '3'),
@@ -55,13 +55,13 @@ class Review(models.Model):
         (9, '9'),
         (10, '10'),
     )
-    Design = models.IntergerField(choices=rates, default=0)
-    Usability = models.IntergerField(choices=rates, default=0)
-    Content = models.IntergerField(choices=rates, default=0)
+    Design = models.IntegerField(choices=rates, default=0)
+    Usability = models.IntegerField(choices=rates, default=0)
+    Content = models.IntegerField(choices=rates, default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='rater')
-    project = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='ratings', null=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='ratings', null=True)
 
     def __str__(self):
-        return '{}'.format(self.user)
+        return '{}{}'.format(self.user, self.project)
 
   
