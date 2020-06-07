@@ -1,5 +1,6 @@
 {% extends 'awards/base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
 <div class="container singleproject">
     <div class="row">
         <div class="col-md-8">
@@ -9,6 +10,26 @@
                 <img class="card-img-top " src= "{{ project.project_image.url}}" alt="project">
             <!-- </div> -->
         </div>
+        <div class="col-md-4">
+            {% for review in project.ratings.all %}
+                {% if forloop.counter is project.ratings.all.count %}
+                    <div id="design">{{ review.design_average}}<br>
+                        <span class="rates">design</span>
+                    </div>
+                    <div id="usable" class="mx-auto">{{ review.usability_average }}<br>
+                        <span class="rates">usability</span>
+                    </div>
+                    <div id="contente">{{ review.content_average }}<br>
+                        <span class="rates">content</span>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
+    <form class='' action="{% url 'review' project.pk %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form |crispy  }}
+        <input type="submit" class ="btn btn-success btn-sm" value="Rate">
+    </form>
 </div>
 {% endblock %}

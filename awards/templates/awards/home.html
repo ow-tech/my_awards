@@ -29,6 +29,17 @@
                             </div>
                             <div>
                                 <a href="{% url 'single_project' project.id  %}"><i class="far fa-chart-bar"></i>Rate</a>
+                                {% for review in project.review.all %}
+                                <div id="design">{{ review.design_average}}<br>
+                                    <span class="rates">design</span>
+                                </div>
+                                <div id="usable" class="mx-auto">{{ review.usability_average }}<br>
+                                    <span class="rates">usability</span>
+                                </div>
+                                <div id="contente">{{ review.content_average }}<br>
+                                    <span class="rates">content</span>
+                                </div>
+                                {% endfor %}
                             </div>
                             <hr>
         

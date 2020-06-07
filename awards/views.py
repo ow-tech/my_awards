@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Project, Profile
+from .models import Project, Profile, Review
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, ProfileUpdateForm, NewProjectForm
+from .forms import UserRegisterForm, ProfileUpdateForm, NewProjectForm, ReviewForm
 
 #dammy projects
 
@@ -69,3 +69,48 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'awards/search.html',{"message":message})
+def review(request,pk):
+    project = Project.objects.get(id=pk)
+    reviews = Review.objects.filter(user=request.user, project_id=pk)
+    print(project)
+    print(reviews)
+    rating_status = None
+    if reviews is None:
+        rating_status = False
+    else:
+        rating_status = True
+    if request.method =='POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.project = project
+            review.save()
+
+            project_reviews = Review.objects.filter(project=project)
+
+
+            design_ratings = [d.design for d in project_reviews]
+            design_average = sum(design_ratings) / len(design_ratings)
+
+            usability_ratings = [us.usability for us in project_reviews]
+            usability_average = sum(usability_ratings) / len(usability_ratings)
+
+            content_ratings = [content.content for content in project_reviews]
+            content_average = sum(content_ratings) / len(content_ratings)
+
+            score = (design_average + usability_average + content_average) / 3
+            review.design_average = round(design_average, 2)
+            review.usability_average = round(usability_average, 2)
+            review.content_average = round(content_average, 2)
+            review.score = round(score, 2)
+            review.save()
+
+            return redirect('home')
+        else:
+            form = ReviewForm(request.POST)
+        context = {
+            "form":form,
+            "project":project
+        }
+        return render(request, 'awards/single_project.html', context)

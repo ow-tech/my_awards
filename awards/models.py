@@ -55,9 +55,13 @@ class Review(models.Model):
         (9, '9'),
         (10, '10'),
     )
-    Design = models.IntegerField(choices=rates, default=0)
-    Usability = models.IntegerField(choices=rates, default=0)
-    Content = models.IntegerField(choices=rates, default=0)
+    design = models.IntegerField(choices=rates, default=0)
+    usability = models.IntegerField(choices=rates, default=0)
+    content = models.IntegerField(choices=rates, default=0)
+    design_average = models.FloatField(default=0, blank=True)
+    usability_average = models.FloatField(default=0, blank=True)
+    content_average = models.FloatField(default=0, blank=True)
+    score = models.FloatField(default=0, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='rater')
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='ratings', null=True)
 
