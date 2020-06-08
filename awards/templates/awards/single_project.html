@@ -26,10 +26,16 @@
             {% endfor %}
         </div>
     </div>
-    <form class='' action="{% url 'review' project.pk %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form |crispy  }}
-        <input type="submit" class ="btn btn-success btn-sm" value="Rate">
-    </form>
+    {% if rating_status %}
+    <h5>You have already voted</h5>
+    {% else %}
+    {% if user.is_authenticated %}
+        <form class='' action="{% url 'review' project.pk %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form |crispy  }}
+            <input type="submit" class ="btn btn-success btn-sm" value="Rate">
+        </form>
+    {% endif %}
+    {% endif %}
 </div>
 {% endblock %}

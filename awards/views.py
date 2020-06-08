@@ -59,6 +59,7 @@ def single_project(request, pk):
         "project":project
     }
     return render(request,'awards/single_project.html', context )
+@login_required()
 def search_results(request):
     if 'project' in request.GET and request.GET['project']:
         search_term= request.GET.get('project')
@@ -69,7 +70,10 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'awards/search.html',{"message":message})
+
+@login_required()
 def review(request,pk):
+    user=request.user
     project = Project.objects.get(id=pk)
     reviews = Review.objects.filter(user=request.user, project_id=pk)
     print(project)
