@@ -8,9 +8,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import profileSerializer,projectSerializer
+from .permisions import IsAdminOrReadOnly
 
 
-#dammy projects
+
 
 def home(request):
     projects = Project.objects.all()
@@ -137,10 +138,20 @@ def profile_list(request):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.data, status=status.HTTP_400_BAD_REQUEST)
+    permission_classes = (IsAdminOrReadOnly,)
         
 
-class project_list(APIView):
-    def get(self, request):
+@api_view(['GET','POST'])
+def project_list(request):
+    if(request.method == 'GET'):
         project = Project.objects.all()
         serializer = projectSerializer(project, many=True)
         return Response(serializer.data)
+
+    elif(request.method =="POST"):
+        serializers = projectSerializer(data=request.data)
+        if (serializers.is_valid()):
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.data, status=status.HTTP_400_BAD_REQUEST)
+    permission_classes = (IsAdminOrReadOnly,)
