@@ -3,6 +3,11 @@ from django.http import HttpResponse
 from .models import Project, Profile, Review
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ProfileUpdateForm, NewProjectForm, ReviewForm
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import profileSerializer
+
 
 #dammy projects
 
@@ -118,3 +123,11 @@ def review(request,pk):
             "project":project
         }
         return render(request, 'awards/single_project.html', context)
+class profile_list(APIView):
+    def get(self, request):
+        profile = Profile.objects.all()
+        serializer = profileSerializer(profile, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        pass
