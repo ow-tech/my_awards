@@ -12,6 +12,6 @@ urlpatterns = [
     path('single/(<int:pk>)/', awards_views.single_project, name = 'single_project'),
     path('search/', awards_views.search_results, name='search_results'),
     path('project/(<int:pk>)/', awards_views.review, name='review'),
-    path('profile_list/', awards_views.profile_list.as_view()),
-    path('project_list', awards_views.project_list.as_view()),
+    path('profile_list/', awards_views.profile_list),
+    path('project_list', awards_views.project_list),
 ]

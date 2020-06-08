@@ -4,6 +4,7 @@ from .models import Project, Profile, Review
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, ProfileUpdateForm, NewProjectForm, ReviewForm
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import profileSerializer,projectSerializer
@@ -123,14 +124,20 @@ def review(request,pk):
             "project":project
         }
         return render(request, 'awards/single_project.html', context)
-class profile_list(APIView):
-    def get(self, request):
+@api_view(['GET','POST'])
+def profile_list(request):
+    if(request.method == 'GET'):
         profile = Profile.objects.all()
         serializer = profileSerializer(profile, many=True)
         return Response(serializer.data)
 
-    def post(self, request):
-        pass
+    elif(request.method =="POST"):
+        serializers = profileSerializer(data=request.data)
+        if (serializers.is_valid()):
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.data, status=status.HTTP_400_BAD_REQUEST)
+        
 
 class project_list(APIView):
     def get(self, request):
