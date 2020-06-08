@@ -6,7 +6,7 @@ from .forms import UserRegisterForm, ProfileUpdateForm, NewProjectForm, ReviewFo
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import profileSerializer
+from .serializers import profileSerializer,projectSerializer
 
 
 #dammy projects
@@ -131,3 +131,9 @@ class profile_list(APIView):
 
     def post(self, request):
         pass
+
+class project_list(APIView):
+    def get(self, request):
+        project = Project.objects.all()
+        serializer = projectSerializer(project, many=True)
+        return Response(serializer.data)
