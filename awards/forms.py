@@ -14,7 +14,7 @@ class UserRegisterForm(UserCreationForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'bio']
+        fields = ['image', 'bio', 'email']
 
 class NewProjectForm(forms.ModelForm):
     class Meta:

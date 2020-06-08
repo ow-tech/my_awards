@@ -37,7 +37,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
     image = models.ImageField(default='default.jpeg', upload_to='profile_pics')
-    # phone_number = models.TextField(default='0723475857842974')
     email = models.EmailField(default='Your email')
 
     def __str__(self):

@@ -25,7 +25,7 @@ def register(request):
     return render(request, 'registration/registration.html', {'form':form})
 @login_required()
 def profile(request):
-    # images = Image.objects.filter(author=request.user).all()
+    images = Image.objects.filter(author=request.user).all()
     profile = Profile.objects.get_or_create(user=request.user)
     if request.method =='POST':
         profile_update_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -37,7 +37,7 @@ def profile(request):
 
     context = {
         'profile_update_form': profile_update_form,
-        # 'projects':projects
+        'projects':projects
     }
     return render(request, 'registration/profile.html', context)
 @login_required()
