@@ -7,34 +7,27 @@
         <div class="row">
             {% for project in projects %}
                 <div class="col-md-4">
-                    <div class="card ">
-                        <!-- <div class="update">
-                        
-                        </div> -->
+                    <div class="card" style="width: 18rem;">
                         <div>
                             <a href="{% url 'profile' %}"> <img class="rounded-circle "  src="{{ user.profile.image.url }}" 
-                                style="border-radius: 50%; width:25px; height:25px;" > {{ project.author }}</a>
+                                style="border-radius: 50%; width:25px; height:25px;" ><h4>Project Owner:</h4> {{ project.author }}</a>
                             <hr>
                             <a href="{% url 'single_project' project.id %}"><img class="card-img-top" src= "{{ project.project_image.url }}" alt="image"></a>
-                        </div> 
+                        </div>
                         <div class="card-body">
-                            <div class='engagement' >
-                                <div id="description" class="mx-auto">{{ project.project_description }}<br>
-                                    <span class="rates text-muted">Project Description</span>
-                                </div>
-                            </div>
-                            <div>
-                                <a href="{% url 'single_project' project.id  %}"><i class="far fa-chart-bar"></i>Rate</a>
-                                {% for review in project.ratings.all %}
-                                 {% if forloop.counter is project.ratings.all.count %}
-                                <div id="score">{{ review.score}}<br>
-                                    <span class="rates text-muted">Overal-Score</span>
-                                </div>
+                          <h5 class="card-title">{{ project.project_name}}</h5>
+                          <p class="card-text">{{ project.project_description}}</p>
+                          <a href="{{project.project_live_link}}" class="text-warning card-link" target="_blank">Porject Live Link</a>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'single_project' project.id  %}" class="text-warning card-link"><i class="far fa-chart-bar"></i>Rate</a>
+                            {% for review in project.ratings.all %}
+                                {% if forloop.counter is project.ratings.all.count %}
+                                    <div id="score">{{ review.score}}<br>
+                                        <span class="rates text-muted">Overal-Score</span>
+                                    </div>
                                 {% endif %}
-                                {% endfor %}
-                            </div>
-                            <hr>
-        
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

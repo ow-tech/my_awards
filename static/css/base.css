@@ -8,7 +8,7 @@
     height:550px;
     width: auto;
 }
-.top h1,p{
+.top h1,h6{
     color: honeydew;
     padding-left: 40px;
 }
@@ -54,16 +54,16 @@
     margin-top: 50px;
     margin-left: 80px;
 }
-.account-image{
-    height: 125px;
-    width: 125px;
+.account-pic img{
+    height: 150px;
+    width: 150px;
     margin-right: 20px;
     margin-bottom: 16px;
 }
-.card-img-top{
+/* .card-img-top{
     height: 300px;
     width: auto;
-}
+} */
 .form{
     margin-top: 5px;
     padding-top: 20px;

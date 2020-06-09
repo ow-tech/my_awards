@@ -4,10 +4,39 @@
 <div class="conatiner-fluid login">
     <legend class="border-bottom mb-4">Profile Info</legend> 
     <div class="row">
+        <div class="col-md-2 account-pic">
+           <img class="rounded-circle" id=""  src="{{ user.profile.image.url }}" > 
+        </div>
+        <div class="col-md-3">
+            Account Name :{{ user.username}}<br>
+            <hr>
+            Bio: {{ user.profile.bio }}
+            <br>
+            <h5>Contact Info</h5>
+            <hr>
+            Email: {{user.profile.email}}
+        </div>
+        <div class="col-md-7">
+            <legend class="border-bottom mb-4">My Projects</legend>
+            {% for project in projects %}
+            <div class='row'>
+                <div class="col-md-6">
+                    <a href="{% url 'single_project' project.id %}"><img src="{{ project.project_image.url }}"></a>
+                    <p>{{project.project_name}}</p>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+
+        </div>
+    </div>
+    <br>
+    <hr class='border-bottom=3px'>
+    <div class='row'>
+        <div class="col-md-4"></div>
         <div class="col-md-4">
-            <a href="{% url 'profile' %}"><img class="rounded-circle account-image"  src="{{ user.profile.image.url }}" > {{ user.username}}</a>
- 
-            <p>Bio: {{user.profile.bio }}</p>
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ profile_update_form|crispy }}
@@ -16,13 +45,9 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-8">
-            <legend class="border-bottom mb-4">My Projects</legend>
-            <!-- {% for image in images %}
-            <img src="{{ image.image.url }}">
-            {% endfor %} -->
-        </div>
+        <div class="col-md-4"></div>
     </div>
+
 </div>
 
 
