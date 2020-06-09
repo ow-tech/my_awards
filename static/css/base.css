@@ -5,7 +5,8 @@
     background-image: url("https://bit.ly/2AEwbRD");
     background-repeat: no-repeat;
     background-position: center center;
-    height:600px;
+    height:550px;
+    width: auto;
 }
 .top h1,p{
     color: honeydew;
@@ -17,6 +18,37 @@
 .links{
     color: honeydew;
     margin-left: 40px;
+}
+.box{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%); 
+}
+.box span{
+    display: block;
+    width:20px;
+    height:20px;
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+    transform:rotate(45deg) ;
+    margin:-10px;
+    animation:animate 2s infinite;
+}
+@keyframes animate{
+    0%
+    {
+        opacity:0;
+    }
+    50%
+    {
+        opacity:1;
+    }
+    100%
+    {
+        opacity:0;
+
+    }
 }
 #project{
     margin-top: 50px;
