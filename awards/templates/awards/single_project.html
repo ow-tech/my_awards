@@ -4,13 +4,11 @@
 <div class="container singleproject">
     <div class="row">
         <div class="col-md-8">
-            <!-- <div class="singleImage"> -->
-                <h4>Name: {{project.project_name}} </h4>
-                <h6>Caption: {{ project.project_description }}</h6>
-                <img class="card-img-top " src= "{{ project.project_image.url}}" alt="project">
-            <!-- </div> -->
+            <h4>Name: {{project.project_name}} </h4>
+            <h6>Description: {{ project.project_description }}</h6>
+            <img class="card-img-top " src= "{{ project.project_image.url}}" alt="project">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             {% for review in project.ratings.all %}
                 {% if forloop.counter is project.ratings.all.count %}
                     <div id="design">{{ review.design_average}}<br>
@@ -25,17 +23,19 @@
                 {% endif %}
             {% endfor %}
         </div>
+        <div class="col-md-2">
+            {% if rating_status %}
+            <h5>You have already voted</h5>
+            {% else %}
+            {% if user.is_authenticated %}
+                <form class='' action="{% url 'review' project.pk %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form |crispy  }}
+                    <input type="submit" class ="btn btn-success btn-sm" value="Rate">
+                </form>
+            {% endif %}
+            {% endif %}
+        </div>
     </div>
-    {% if rating_status %}
-    <h5>You have already voted</h5>
-    {% else %}
-    {% if user.is_authenticated %}
-        <form class='' action="{% url 'review' project.pk %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form |crispy  }}
-            <input type="submit" class ="btn btn-success btn-sm" value="Rate">
-        </form>
-    {% endif %}
-    {% endif %}
 </div>
 {% endblock %}

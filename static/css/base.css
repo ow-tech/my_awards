@@ -11,6 +11,9 @@
     color: honeydew;
     padding-left: 40px;
 }
+.top{
+    margin-bottom: 20px;
+}
 .links{
     color: honeydew;
     margin-left: 40px;
@@ -26,7 +29,7 @@
     margin-bottom: 16px;
 }
 .card-img-top{
-    height: 250px;
+    height: 300px;
     width: auto;
 }
 .form{
