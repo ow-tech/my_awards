@@ -3,7 +3,6 @@
     margin-top:0 ;
     padding-top: 20px;
     background-image: url("https://bit.ly/2AEwbRD");
-    /* background-size: cover; */
     background-repeat: no-repeat;
     background-position: center center;
     height:600px;
@@ -33,4 +32,17 @@
 .form{
     margin-top: 5px;
     padding-top: 20px;
+}
+.engagement span{
+    border-bottom: 2px solid black;
+}
+.score, span{
+    border-bottom: 2px solid black;
+}
+.nav a{
+    color: honeydew;
+    margin-left: 40px;
+}
+.nav a:hover{
+    color:blue;
 }

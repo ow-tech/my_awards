@@ -3,18 +3,11 @@
 <div id="project">
     <a href="{%url 'new-project'%}"><i class="fas fa-plus-circle"></i>Post</a>
 </div>
-    <h$>yes.</h>
-    
-    <h5>{{project.author}}</h5>
-    <h1>{{ project.project_name}}</h1>
-    <img src="{{project.project_image.url}}">
-    
-    <p>{{project.project_description}}</p>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             {% for project in projects %}
                 <div class="col-md-4">
-                    <div class="card " style="width: 40rem;">
+                    <div class="card ">
                         <!-- <div class="update">
                         
                         </div> -->
@@ -26,19 +19,18 @@
                         </div> 
                         <div class="card-body">
                             <div class='engagement' >
+                                <div id="description" class="mx-auto">{{ project.project_description }}<br>
+                                    <span class="rates text-muted">Project Description</span>
+                                </div>
                             </div>
                             <div>
                                 <a href="{% url 'single_project' project.id  %}"><i class="far fa-chart-bar"></i>Rate</a>
-                                {% for review in project.review.all %}
-                                <div id="design">{{ review.design_average}}<br>
-                                    <span class="rates">design</span>
+                                {% for review in project.ratings.all %}
+                                 {% if forloop.counter is project.ratings.all.count %}
+                                <div id="score">{{ review.score}}<br>
+                                    <span class="rates text-muted">Overal-Score</span>
                                 </div>
-                                <div id="usable" class="mx-auto">{{ review.usability_average }}<br>
-                                    <span class="rates">usability</span>
-                                </div>
-                                <div id="contente">{{ review.content_average }}<br>
-                                    <span class="rates">content</span>
-                                </div>
+                                {% endif %}
                                 {% endfor %}
                             </div>
                             <hr>
