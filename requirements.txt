@@ -2,7 +2,7 @@ asgiref==3.2.7
 Babel==2.8.0
 beautifulsoup4==4.9.1
 confusable-homoglyphs==3.2.0
-Django==3.0.7
+Django==3.0.14
 django-bootstrap4==2.0.1
 django-crispy-forms==1.9.1
 django-registration==2.4.1
